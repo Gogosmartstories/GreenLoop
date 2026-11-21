@@ -128,7 +128,7 @@ ol.top b.p{font:700 18px Outfit,sans-serif;color:var(--g)}ol.top small{display:b
 <section id="settings" hidden>
   <h2>الإعدادات</h2>
   <form class="panel" id="setForm">
-    <label class="f" for="api">https://script.google.com/macros/s/AKfycbycveoYCnTVjGmJhkkmT4bOD0GqAAZCVViEpMMGH1FvTejT-j1nG6VklYxqFlQOmUTY/exec (Web App URL)</label><input id="api" dir="ltr" placeholder="https://script.google.com/macros/s/…/exec">
+    <div id="apiBox"><label class="f" for="api">رابط الخادم (Web App URL)</label><input id="api" dir="ltr" placeholder="https://script.google.com/macros/s/…/exec"></div>
     <label class="f" for="pin">رمز المشرفة</label><input id="pin" type="password" inputmode="numeric" autocomplete="off">
     <label class="f" for="by">اسم المشرفة (يظهر في السجل)</label><input id="by">
     <button class="btn mt">حفظ واختبار الاتصال</button>
@@ -148,7 +148,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const store={get:k=>{try{return localStorage.getItem('gl_'+k)||''}catch(e){return ''}},set:(k,v)=>{try{localStorage.setItem('gl_'+k,v)}catch(e){}}};
 const WASTE=['بلاستيك','ورق','بقايا طعام','مياه متبقية'];
 let waste=WASTE[0],current=null,stream=null,scanning=false,lastCode='',lastAt=0;
-const api=()=>store.get('api')||DEFAULT_API;
+const api=()=>DEFAULT_API||store.get('api');
 
 function note(m,k){const n=$('#note');n.textContent=m||'';n.className='note '+(k||'');n.hidden=!m}
 function show(t){document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab==t));document.querySelectorAll('main>section').forEach(s=>s.hidden=s.id!=t);if(t!='scan')stopCam();if(t=='board')loadBoard()}
@@ -251,14 +251,15 @@ async function loadBoard(){
 $('#refresh').addEventListener('click',loadBoard);
 
 /* ---- settings ---- */
-$('#api').value=api();$('#pin').value=store.get('pin');$('#by').value=store.get('by');
+$('#api').value=api();if(DEFAULT_API)$('#apiBox').hidden=true;$('#pin').value=store.get('pin');$('#by').value=store.get('by');
 $('#setForm').addEventListener('submit',async e=>{
-  e.preventDefault();store.set('api',$('#api').value.trim());store.set('pin',$('#pin').value.trim());store.set('by',$('#by').value.trim());
+  e.preventDefault();if(!DEFAULT_API)store.set('api',$('#api').value.trim());store.set('pin',$('#pin').value.trim());store.set('by',$('#by').value.trim());
   note('جارٍ اختبار الاتصال…');
   try{const r=await get({action:'ping'});if(!r.ok)throw r;if(r.school)$('#school').textContent=r.school;note('تم الاتصال بالخادم بنجاح ✓');setTimeout(()=>show('scan'),900)}
   catch(x){note('لم ينجح الاتصال. تأكدي من نسخ الرابط كاملًا، وأن النشر «لأي شخص».','bad')}
 });
 if(!api()){show('settings');note('مرحبًا! الصقي رابط الخادم ورمز المشرفة للبدء.')}
+else if(!store.get('pin')){show('settings');note('مرحبًا! اكتبي رمز المشرفة للبدء.')}
 }
 </script>
 </body>

@@ -128,7 +128,7 @@ ol.top b.p{font:700 18px Outfit,sans-serif;color:var(--g)}ol.top small{display:b
 <section id="settings" hidden>
   <h2>الإعدادات</h2>
   <form class="panel" id="setForm">
-    <div id="apiBox"><label class="f" for="api">https://script.google.com/macros/s/AKfycbycveoYCnTVjGmJhkkmT4bOD0GqAAZCVViEpMMGH1FvTejT-j1nG6VklYxqFlQOmUTY/exec</label><input id="api" dir="ltr" placeholder="https://script.google.com/macros/s/…/exec"></div>
+    <div id="apiBox"><label class="f" for="api">رابط الخادم</label><input id="api" dir="ltr" placeholder="https://script.google.com/macros/s/…/exec"></div>
     <label class="f" for="pin">رمز المشرفة</label><input id="pin" type="password" inputmode="numeric" autocomplete="off">
     <label class="f" for="by">اسم المشرفة (يظهر في السجل)</label><input id="by">
     <button class="btn mt">حفظ واختبار الاتصال</button>
@@ -141,7 +141,7 @@ ol.top b.p{font:700 18px Outfit,sans-serif;color:var(--g)}ol.top small{display:b
 <script>
 {
 /* يمكن كتابة رابط الخادم هنا ليعمل لكل من يفتح الصفحة دون إعداد */
-const DEFAULT_API = '';
+const DEFAULT_API = 'https://script.google.com/macros/s/AKfycbycveoYCnTVjGmJhkkmT4bOD0GqAAZCVViEpMMGH1FvTejT-j1nG6VklYxqFlQOmUTY/exec';
 
 const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));

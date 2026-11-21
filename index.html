@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b5d3b">
+<title>مكافآت Green Loop</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light dark;--bg:light-dark(#f3f7f4,#0b1510);--card:light-dark(#fff,#13221a);--ink:light-dark(#10241a,#e6f2ea);--mute:light-dark(#5d7064,#9db3a5);--g:light-dark(#0b5d3b,#1f8a5a);--g2:light-dark(#e3f1e8,#18301f);--mint:#3ecf8e;--sun:#f2b705;--bad:light-dark(#b3261e,#ff8a80);--line:light-dark(#d9e6dd,#244232)}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "IBM Plex Sans Arabic",system-ui,sans-serif;overflow-x:clip;padding-bottom:env(safe-area-inset-bottom)}
+header{text-align:center;padding:calc(18px + env(safe-area-inset-top)) 16px 4px}
+.brand{font:700 clamp(28px,7vw,42px)/1.05 Outfit,sans-serif;color:var(--g);margin:0;direction:ltr}
+.sub{margin:4px 0 0;font-weight:700}.school{margin:0;color:var(--mute);font-size:14px}
+nav{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:12px;position:sticky;top:0;background:var(--bg);z-index:5}
+nav button{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 18px;min-height:44px;cursor:pointer}
+nav button[aria-selected=true]{background:var(--g);color:#fff;border-color:var(--g)}
+main{max-width:640px;margin:0 auto;padding:0 16px 48px}
+h2{font-size:21px;margin:16px 0 10px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px}
+.cam{position:relative;aspect-ratio:1;max-width:420px;margin:0 auto;border-radius:24px;overflow:hidden;background:#06281a;display:grid;place-items:center}
+.cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cam .frame{position:absolute;inset:18%;border:4px solid var(--mint);border-radius:22px;box-shadow:0 0 0 999px rgb(0 0 0/.35)}
+.cam .frame::after{content:"";position:absolute;inset-inline:8%;height:3px;background:var(--mint);top:10%;animation:sweep 1.8s ease-in-out infinite alternate}
+@keyframes sweep{to{top:88%}}
+.cam .idle{position:relative;text-align:center;color:#e3f1e8;padding:20px}
+.cam .idle svg{width:38%;margin-bottom:8px}
+@media(prefers-reduced-motion:reduce){.cam .frame::after,.pop div{animation:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:700;font-size:18px;background:var(--g);color:#fff;border:0;border-radius:999px;padding:12px 30px;min-height:54px;cursor:pointer}
+.btn:disabled{background:var(--line);color:var(--mute);cursor:default}
+.ghost{font:inherit;font-weight:600;background:transparent;color:var(--g);border:1px solid var(--line);border-radius:12px;padding:8px 14px;min-height:44px;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.center{text-align:center}.mt{margin-top:14px}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+input{font:inherit;font-size:16px;width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);min-height:46px}
+label.f{display:block;font-weight:600;font-size:14px;margin:12px 0 4px}
+.manual{display:flex;gap:8px;margin-top:14px}.manual input{direction:ltr;text-align:center}
+.note{margin:12px 0 0;padding:12px 16px;border-radius:14px;background:var(--g2);font-weight:600}.note.bad{background:light-dark(#fdeceb,#3a1715);color:var(--bad)}
+.hint{color:var(--mute);font-size:14px;margin:6px 0 0}
+.sc{margin-top:16px;border:2px solid var(--g);border-radius:20px;overflow:hidden;background:var(--card)}
+.sc-top{background:var(--g);color:#fff;padding:10px 18px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-weight:700}
+.sc-body{padding:16px 18px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}
+.sc-name{font-size:clamp(21px,5vw,26px);font-weight:700;margin:2px 0;line-height:1.3}
+.sc-meta{color:var(--mute);font-size:15px}.sc-meta b{color:var(--ink)}
+.pts{text-align:center;background:var(--g2);border-radius:18px;padding:10px 16px}.pts b{display:block;font:700 38px/1 Outfit,sans-serif;color:var(--g)}.pts small{color:var(--mute)}
+.dots{display:flex;align-items:center;gap:8px;padding:0 18px;font-weight:600;color:var(--mute)}
+.dots i{width:24px;height:24px;border-radius:50%;border:2px dashed var(--mint)}.dots i.on{background:var(--mint);border-style:solid}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:12px 18px 0}
+.chips button{font:inherit;font-weight:600;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:8px 16px;min-height:44px;cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--mint);border-color:var(--mint);color:#06301d}
+.sc-act{padding:16px 18px;display:flex;gap:10px;flex-wrap:wrap}
+.pop{position:fixed;inset:0;display:grid;place-items:center;background:rgb(6 40 25/.72);z-index:20}
+.pop div{background:var(--card);border-radius:28px;padding:28px 40px;text-align:center;animation:up .5s cubic-bezier(.2,1.4,.4,1)}
+.pop b{display:block;font:700 68px/1 Outfit,sans-serif;color:var(--sun)}@keyframes up{from{transform:scale(.6);opacity:0}}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center}.stat b{display:block;font:700 28px/1.1 Outfit,sans-serif;color:var(--g)}.stat span{color:var(--mute);font-size:13px}
+ol.top{list-style:none;padding:0;margin:0}ol.top li{display:grid;grid-template-columns:2em minmax(0,1fr) auto;gap:8px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+ol.top li span:first-child{font:700 18px Outfit,sans-serif;color:var(--mute)}ol.top li:nth-child(-n+3) span:first-child{color:var(--sun)}
+ol.top b.p{font:700 18px Outfit,sans-serif;color:var(--g)}ol.top small{display:block;color:var(--mute)}
+.bars div{display:grid;grid-template-columns:7em minmax(0,1fr) 2.5em;gap:8px;align-items:center;margin:6px 0;font-size:14px}.bars s{display:block;height:12px;border-radius:6px;background:var(--mint)}.bars em{font-style:normal;text-align:end;font-weight:700}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="arm"><path d="M50 12a38 38 0 0 1 31.1 16.2" fill="none" stroke-width="11" stroke-linecap="round"/><path d="M87.4 37.2 74.5 32.8 87.6 23.6Z" stroke="none"/></g></defs></svg>
+<header>
+  <p class="brand">Green Loop Rewards</p>
+  <p class="sub">مكافآت جرين لووب</p>
+  <p class="school" id="school">هند بنت عُتبة الإعدادية للبنات</p>
+</header>
+<nav>
+  <button data-tab="scan" aria-selected="true">المسح</button>
+  <button data-tab="board" aria-selected="false">لوحة الشرف</button>
+  <button data-tab="settings" aria-selected="false">الإعدادات</button>
+</nav>
+<main>
+<p class="note" id="note" hidden></p>
+
+<section id="scan">
+  <div class="cam" id="cam">
+    <video id="video" playsinline muted hidden></video>
+    <div class="frame" id="frame" hidden></div>
+    <div class="idle" id="idle"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#arm" stroke="#3ecf8e" fill="#3ecf8e"/><use href="#arm" stroke="#9be8c1" fill="#9be8c1" transform="rotate(120 50 50)"/><use href="#arm" stroke="#1f8a5a" fill="#1f8a5a" transform="rotate(240 50 50)"/></svg>
+      <p style="margin:0;font-weight:700;font-size:20px">امسحي بطاقة الطالبة</p></div>
+  </div>
+  <div class="row mt"><button class="btn" id="startBtn">📷 تشغيل الكاميرا</button><button class="ghost" id="stopBtn" hidden>إيقاف</button></div>
+  <div class="row mt"><button class="ghost" id="pickBtn">🖼️ صورة من الألبوم</button></div>
+  <input id="pick" type="file" accept="image/*" hidden>
+  <form class="manual" id="manual"><input id="manualCode" placeholder="أو اكتبي الرمز: GL-001" autocomplete="off"><button class="ghost">عرض</button></form>
+
+  <div class="sc" id="card" hidden>
+    <div class="sc-top"><span id="cSchool"></span><span dir="ltr">Green Loop</span></div>
+    <div class="sc-body">
+      <div><div style="color:var(--g);font-weight:700">بطاقة المشاركة البيئية</div><p class="sc-name" id="cName"></p>
+        <div class="sc-meta">الصف <b id="cGrade"></b> · <b id="cCode" dir="ltr"></b></div></div>
+      <div class="pts"><b id="cPoints">0</b><small>نقطة</small></div>
+    </div>
+    <div class="dots" id="cDots"></div>
+    <div class="chips" id="chips"></div>
+    <div class="sc-act"><button class="btn" id="award">امنحي المكافأة</button><button class="ghost" id="next">البطاقة التالية</button></div>
+  </div>
+
+  <div class="panel mt" id="unknown" hidden>
+    <h2 style="margin-top:0">هذه البطاقة غير مسجّلة</h2>
+    <p class="hint" style="overflow-wrap:anywhere">الرمز: <span id="uCode" dir="ltr"></span></p>
+    <form id="addForm">
+      <label class="f" for="aName">اسم الطالبة</label><input id="aName" required>
+      <label class="f" for="aGrade">الصف</label><input id="aGrade" placeholder="07/1">
+      <label class="f" for="aSerial">الرقم المطبوع على البطاقة</label><input id="aSerial" dir="ltr" placeholder="GL-001" required>
+      <button class="btn mt">تسجيل الطالبة</button>
+    </form>
+  </div>
+</section>
+
+<section id="board" hidden>
+  <h2>إنجاز اليوم</h2>
+  <div class="stats"><div class="stat"><b id="sCount">–</b><span>إيداع</span></div><div class="stat"><b id="sPeople">–</b><span>طالبة</span></div><div class="stat"><b id="sPts">–</b><span>نقطة</span></div></div>
+  <div class="panel mt"><b>حسب نوع النفاية</b><div class="bars" id="bars"></div></div>
+  <h2>أعلى عشر طالبات</h2>
+  <div class="panel"><ol class="top" id="top"></ol></div>
+  <div class="row mt"><button class="ghost" id="refresh">تحديث</button></div>
+</section>
+
+<section id="settings" hidden>
+  <h2>الإعدادات</h2>
+  <form class="panel" id="setForm">
+    <label class="f" for="api">رابط الخادم (Web App URL)</label><input id="api" dir="ltr" placeholder="https://script.google.com/macros/s/…/exec">
+    <label class="f" for="pin">رمز المشرفة</label><input id="pin" type="password" inputmode="numeric" autocomplete="off">
+    <label class="f" for="by">اسم المشرفة (يظهر في السجل)</label><input id="by">
+    <button class="btn mt">حفظ واختبار الاتصال</button>
+    <p class="hint">تُحفظ هذه البيانات في هذا الجوال فقط.</p>
+  </form>
+</section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
+<script>
+{
+/* يمكن كتابة رابط الخادم هنا ليعمل لكل من يفتح الصفحة دون إعداد */
+const DEFAULT_API = '';
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store={get:k=>{try{return localStorage.getItem('gl_'+k)||''}catch(e){return ''}},set:(k,v)=>{try{localStorage.setItem('gl_'+k,v)}catch(e){}}};
+const WASTE=['بلاستيك','ورق','بقايا طعام','مياه متبقية'];
+let waste=WASTE[0],current=null,stream=null,scanning=false,lastCode='',lastAt=0;
+const api=()=>store.get('api')||DEFAULT_API;
+
+function note(m,k){const n=$('#note');n.textContent=m||'';n.className='note '+(k||'');n.hidden=!m}
+function show(t){document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab==t));document.querySelectorAll('main>section').forEach(s=>s.hidden=s.id!=t);if(t!='scan')stopCam();if(t=='board')loadBoard()}
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.tab)));
+
+async function get(params){const u=new URL(api());Object.entries(params).forEach(([k,v])=>u.searchParams.set(k,v));const r=await fetch(u);return r.json()}
+async function post(body){const r=await fetch(api(),{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({...body,pin:store.get('pin'),by:store.get('by')})});return r.json()}
+
+function codeFrom(t){t=String(t).trim();const k=t.match(/GL-([0-9a-f]{16,})/i);if(k)return 'GL-'+k[1].toLowerCase();const m=t.match(/^GL[-_ ]?(\d{1,6})$/i);if(m)return 'GL-'+m[1].padStart(3,'0');return t.toUpperCase()}
+
+/* ---- camera ---- */
+const video=$('#video'),cv=document.createElement('canvas'),cx=cv.getContext('2d',{willReadFrequently:true});
+const detector='BarcodeDetector' in window?new BarcodeDetector({formats:['qr_code']}):null;
+async function startCam(){
+  if(!api()){show('settings');note('أدخلي رابط الخادم أولًا.','bad');return}
+  try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:'environment'},width:{ideal:1280}},audio:false})}
+  catch(e){note('لم يُسمح بالكاميرا. اسمحي للمتصفح باستخدامها من إعدادات الموقع، أو استخدمي صورة من الألبوم.','bad');return}
+  video.srcObject=stream;video.hidden=false;$('#frame').hidden=false;$('#idle').hidden=true;$('#startBtn').hidden=true;$('#stopBtn').hidden=false;
+  await video.play();note('');scanning=true;tick();
+}
+function stopCam(){scanning=false;if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}video.hidden=true;$('#frame').hidden=true;$('#idle').hidden=false;$('#startBtn').hidden=false;$('#stopBtn').hidden=true}
+async function tick(){
+  if(!scanning)return;
+  let txt=null;
+  if(video.readyState>=2){
+    try{
+      if(detector){const r=await detector.detect(video);if(r[0])txt=r[0].rawValue}
+      else{const s=Math.min(1,720/Math.max(video.videoWidth,video.videoHeight)),w=Math.round(video.videoWidth*s),h=Math.round(video.videoHeight*s);cv.width=w;cv.height=h;cx.drawImage(video,0,0,w,h);const r=jsQR(cx.getImageData(0,0,w,h).data,w,h,{inversionAttempts:'dontInvert'});if(r)txt=r.data}
+    }catch(e){}
+  }
+  if(txt){const c=codeFrom(txt);if(c!=lastCode||Date.now()-lastAt>4000){lastCode=c;lastAt=Date.now();if(navigator.vibrate)navigator.vibrate(80);stopCam();lookup(c);return}}
+  setTimeout(tick,160);
+}
+$('#startBtn').addEventListener('click',startCam);$('#stopBtn').addEventListener('click',stopCam);
+
+/* ---- album / manual ---- */
+$('#pickBtn').addEventListener('click',()=>$('#pick').click());
+$('#pick').addEventListener('change',async e=>{
+  const f=e.target.files[0];e.target.value='';if(!f)return;note('جارٍ قراءة الرمز…');
+  const img=new Image();img.src=URL.createObjectURL(f);await img.decode().catch(()=>{});
+  let txt=null;
+  if(detector){try{const r=await detector.detect(img);if(r[0])txt=r[0].rawValue}catch(x){}}
+  for(const m of [1400,900,600]){if(txt)break;const s=Math.min(1,m/Math.max(img.naturalWidth,img.naturalHeight)),w=Math.round(img.naturalWidth*s),h=Math.round(img.naturalHeight*s);cv.width=w;cv.height=h;cx.drawImage(img,0,0,w,h);const r=jsQR(cx.getImageData(0,0,w,h).data,w,h,{inversionAttempts:'attemptBoth'});if(r)txt=r.data}
+  if(!txt){note('لم يظهر رمز QR في الصورة.','bad');return}note('');lookup(codeFrom(txt));
+});
+$('#manual').addEventListener('submit',e=>{e.preventDefault();const v=$('#manualCode').value.trim();if(v)lookup(codeFrom(v))});
+
+/* ---- student ---- */
+$('#chips').innerHTML=WASTE.map(w=>`<button type="button" aria-pressed="${w==waste}">${w}</button>`).join('');
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;waste=b.textContent;$('#chips').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x==b))});
+async function lookup(code){
+  if(!api()){show('settings');note('أدخلي رابط الخادم أولًا.','bad');return}
+  $('#card').hidden=true;$('#unknown').hidden=true;note('جارٍ البحث عن الطالبة…');
+  try{
+    const r=await get({action:'student',q:code});
+    if(!r.ok)throw r;note('');
+    if(!r.found){$('#unknown').hidden=false;$('#uCode').textContent=code;$('#unknown').dataset.code=code;$('#aSerial').value=/^GL-\d+$/.test(code)?code:'';$('#aName').focus();return}
+    current={...r};renderCard();
+  }catch(e){note('تعذّر الاتصال بالخادم. تأكدي من الإنترنت ومن رابط الخادم.','bad')}
+}
+function renderCard(){
+  const {student:s,used,max,points,school}=current;
+  if(school)$('#school').textContent=school;
+  $('#cSchool').textContent=school||$('#school').textContent;$('#cName').textContent=s.name;$('#cGrade').textContent=s.grade||'—';$('#cCode').textContent=s.code;$('#cPoints').textContent=s.points;
+  $('#cDots').innerHTML=Array.from({length:max},(_,i)=>`<i class="${i<used?'on':''}"></i>`).join('')+`<span>${used} من ${max} اليوم</span>`;
+  const b=$('#award');b.disabled=used>=max;b.textContent=used>=max?'اكتملت مكافآت اليوم':`امنحي المكافأة  +${points||current.added||10}`;
+  $('#card').hidden=false;$('#card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('#award').addEventListener('click',async()=>{
+  if(!current)return;const b=$('#award');b.disabled=true;b.textContent='جارٍ التسجيل…';
+  try{
+    const r=await post({action:'award',q:current.student.code,waste});
+    if(r.ok){current={...current,student:r.student,used:r.used,max:r.max};celebrate(r.added,r.student.name)}
+    else if(r.error=='limit'){current={...current,used:r.used,max:r.max};note(`${current.student.name} حصلت على ${r.max} مكافأة اليوم. تعود غدًا 🌱`,'bad')}
+    else if(r.error=='pin'){note('رمز المشرفة غير صحيح. صحّحيه في الإعدادات.','bad')}
+    else note('تعذّر التسجيل، حاولي مرة أخرى.','bad');
+  }catch(e){note('تعذّر الاتصال بالخادم.','bad')}
+  renderCard();
+});
+$('#next').addEventListener('click',()=>{current=null;$('#card').hidden=true;note('');window.scrollTo({top:0,behavior:'smooth'});startCam()});
+$('#addForm').addEventListener('submit',async e=>{
+  e.preventDefault();const code=$('#unknown').dataset.code,serial=codeFrom($('#aSerial').value);
+  try{const r=await post({action:'add',code:serial,name:$('#aName').value.trim(),grade:$('#aGrade').value.trim(),qr:/^GL-[0-9a-f]{16,}$/.test(code)?code:''});
+    if(r.ok){$('#unknown').hidden=true;$('#aName').value='';$('#aGrade').value='';note('سُجّلت الطالبة.');lookup(serial)}
+    else note(r.error=='exists'?'هذا الرقم مسجّل لطالبة أخرى.':r.error=='pin'?'رمز المشرفة غير صحيح.':'تعذّر التسجيل.','bad')}
+  catch(x){note('تعذّر الاتصال بالخادم.','bad')}
+});
+function celebrate(p,name){const d=document.createElement('div');d.className='pop';d.innerHTML=`<div><b>+${p}</b><p style="margin:8px 0 0;font-weight:700">أحسنتِ يا ${esc(name)}!</p><p style="margin:0;color:var(--mute)">نقاط بيئية أُضيفت إلى رصيدك</p></div>`;document.body.append(d);d.addEventListener('click',()=>d.remove());setTimeout(()=>d.remove(),2200)}
+
+/* ---- board ---- */
+async function loadBoard(){
+  if(!api())return;
+  try{const r=await get({action:'board'});if(!r.ok)throw r;
+    $('#sCount').textContent=r.today.count;$('#sPeople').textContent=r.today.people;$('#sPts').textContent=r.today.points;
+    const mx=Math.max(1,...WASTE.map(w=>r.today.by[w]||0));
+    $('#bars').innerHTML=WASTE.map(w=>`<div><span>${w}</span><s style="width:${(r.today.by[w]||0)/mx*100}%"></s><em>${r.today.by[w]||0}</em></div>`).join('');
+    $('#top').innerHTML=r.top.length?r.top.map((s,i)=>`<li><span>${i+1}</span><span><b>${esc(s.name)}</b><small>${esc(s.grade)}</small></span><b class="p">${s.points}</b></li>`).join(''):'<li>لا توجد نقاط بعد.</li>';
+  }catch(e){note('تعذّر تحميل لوحة الشرف.','bad')}
+}
+$('#refresh').addEventListener('click',loadBoard);
+
+/* ---- settings ---- */
+$('#api').value=api();$('#pin').value=store.get('pin');$('#by').value=store.get('by');
+$('#setForm').addEventListener('submit',async e=>{
+  e.preventDefault();store.set('api',$('#api').value.trim());store.set('pin',$('#pin').value.trim());store.set('by',$('#by').value.trim());
+  note('جارٍ اختبار الاتصال…');
+  try{const r=await get({action:'ping'});if(!r.ok)throw r;if(r.school)$('#school').textContent=r.school;note('تم الاتصال بالخادم بنجاح ✓');setTimeout(()=>show('scan'),900)}
+  catch(x){note('لم ينجح الاتصال. تأكدي من نسخ الرابط كاملًا، وأن النشر «لأي شخص».','bad')}
+});
+if(!api()){show('settings');note('مرحبًا! الصقي رابط الخادم ورمز المشرفة للبدء.')}
+}
+</script>
+</body>
+</html>
